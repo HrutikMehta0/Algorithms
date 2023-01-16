@@ -26,4 +26,15 @@
 # be between 1 and 2^h-1, inclusive.
 def solution(h, q):
     # Your code here
-    return []
+    arr = list(range(1, 2**h))
+    p = []
+    for i in q:
+        if i == arr[len(arr)-1]:
+            p.append(-1)
+        else:
+            p.append(arr[2*i-1])
+    return p
+
+
+# # Test cases
+print(solution(3, [7, 3, 5, 1]))
