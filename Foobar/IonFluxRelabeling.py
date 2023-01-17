@@ -28,6 +28,7 @@ def solution(h, q):
     # Your code here
     arr = list(range(1, 2**h))
     p = []
+    tree = []
     for i in q:
         if i == arr[len(arr)-1]:
             p.append(-1)
