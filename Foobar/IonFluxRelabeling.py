@@ -25,17 +25,25 @@
 # The lists q and p contain at least one but no more than 10000 distinct integers, all of which will
 # be between 1 and 2^h-1, inclusive.
 def solution(h, q):
-    # Your code here
-    arr = list(range(1, 2**h))
-    p = []
-    tree = []
-    for i in q:
-        if i == arr[len(arr)-1]:
-            p.append(-1)
-        else:
-            p.append(arr[2*i-1])
-    return p
+    arr = [int(iterSolution(h, x)) for x in q]
+    return arr
+
+
+def iterSolution(h, x):
+    curr_root = 2 ** h - 1
+    # base case
+    if x == curr_root:
+        return -1
+    half = (curr_root + 1) / 2
+    if x == half - 1 or x == curr_root - 1:
+        return curr_root
+    if x < half:
+        return iterSolution(h - 1, x)
+    else:
+        half -= 1
+        return iterSolution(h - 1, x - half) + half
 
 
 # # Test cases
 print(solution(3, [7, 3, 5, 1]))
+print(solution(5, [i for i in range(1, 32)]))
