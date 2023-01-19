@@ -33,6 +33,30 @@
 # such as 0, then the length is 1.
 
 def solution(n, b):
-    x = [int(x) for x in str(n)].sort(reverse=True)
-    y = [int(x) for x in str(n)].sort()
+    x = [int(a) for a in str(n)]
+    x = sorted(x, reverse=True)
+    s = [str(a) for a in x]
+    x = int(''.join(s))
+    y = [int(a) for a in str(n)]
+    y = sorted(y)
+    s = [str(a) for a in y]
+    y = int(''.join(s))
     z = x - y
+    idSet = set()
+    chainLength = 0
+    while z not in idSet:
+        idSet.add(z)
+        chainLength += 1
+        x = [int(a) for a in str(z)]
+        x = sorted(x, reverse=True)
+        s = [str(a) for a in x]
+        x = int(''.join(s))
+        y = [int(a) for a in str(z)]
+        y = sorted(y)
+        s = [str(a) for a in y]
+        y = int(''.join(s))
+        z = x - y
+    return chainLength
+
+
+print(solution(210022, 3))
