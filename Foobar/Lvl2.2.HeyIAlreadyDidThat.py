@@ -31,3 +31,8 @@
 # above starting with n. For instance, in the example above, solution(210022, 3) would return 3,
 # since iterating on 102212 would return to 210111 when done in base 3. If the algorithm reaches a constant,
 # such as 0, then the length is 1.
+
+def solution(n, b):
+    x = [int(x) for x in str(n)].sort(reverse=True)
+    y = [int(x) for x in str(n)].sort()
+    z = x - y
