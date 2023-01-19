@@ -1,4 +1,5 @@
-# Braille Translation===================
+# Braille Translation
+# ===================
 # Because Commander Lambda is an equal-opportunity despot, they have several visually-impaired minions.
 # But Lambda never bothered to follow intergalactic standards for workplace accommodations,
 # so those minions have a hard time navigating her space station.
