@@ -33,30 +33,54 @@
 # such as 0, then the length is 1.
 
 def solution(n, b):
+    k = len(str(n))
     x = [int(a) for a in str(n)]
     x = sorted(x, reverse=True)
     s = [str(a) for a in x]
-    x = int(''.join(s))
+    x = int(''.join(s), b)
     y = [int(a) for a in str(n)]
     y = sorted(y)
     s = [str(a) for a in y]
-    y = int(''.join(s))
+    y = int(''.join(s), b)
     z = x - y
-    idSet = set()
+    zStr = ''
+    while z > 0:
+        zStr += str(z % b)
+        z //= b
+    z = int(zStr[::-1])
+    if len(str(z)) < k:
+        zStr = zStr + '0' * (k - len(str(z)))
+    idDic = {}
     chainLength = 0
-    while z not in idSet:
-        idSet.add(z)
-        chainLength += 1
+    while True:
+        if z in idDic:
+            if idDic[z] == 0:
+                idDic[z] = 1
+            elif idDic[z] == 1:
+                idDic[z] += 1
+                chainLength += 1
+            elif idDic[z] == 2:
+                return chainLength
+        else:
+            idDic[z] = 0
         x = [int(a) for a in str(z)]
         x = sorted(x, reverse=True)
         s = [str(a) for a in x]
-        x = int(''.join(s))
+        x = int(''.join(s), b)
         y = [int(a) for a in str(z)]
         y = sorted(y)
         s = [str(a) for a in y]
-        y = int(''.join(s))
+        y = int(''.join(s), b)
         z = x - y
+        zStr = ''
+        while z > 0:
+            zStr += str(z % b)
+            z //= b
+        if len(str(z)) < k:
+            zStr = zStr + '0' * (k - len(str(z)))
+        z = int(zStr[::-1])
     return chainLength
 
 
 print(solution(210022, 3))
+print(solution(1211, 10))
