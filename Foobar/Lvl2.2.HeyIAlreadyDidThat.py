@@ -33,54 +33,29 @@
 # such as 0, then the length is 1.
 
 def solution(n, b):
+    tempN = n
     k = len(str(n))
-    x = [int(a) for a in str(n)]
-    x = sorted(x, reverse=True)
-    s = [str(a) for a in x]
-    x = int(''.join(s), b)
-    y = [int(a) for a in str(n)]
-    y = sorted(y)
-    s = [str(a) for a in y]
-    y = int(''.join(s), b)
-    z = x - y
-    zStr = ''
-    while z > 0:
-        zStr += str(z % b)
-        z //= b
-    z = int(zStr[::-1])
-    if len(str(z)) < k:
-        zStr = zStr + '0' * (k - len(str(z)))
-    idDic = {}
-    chainLength = 0
-    while True:
-        if z in idDic:
-            if idDic[z] == 0:
-                idDic[z] = 1
-            elif idDic[z] == 1:
-                idDic[z] += 1
-                chainLength += 1
-            elif idDic[z] == 2:
-                return chainLength
-        else:
-            idDic[z] = 0
-        x = [int(a) for a in str(z)]
-        x = sorted(x, reverse=True)
-        s = [str(a) for a in x]
-        x = int(''.join(s), b)
-        y = [int(a) for a in str(z)]
-        y = sorted(y)
-        s = [str(a) for a in y]
-        y = int(''.join(s), b)
-        z = x - y
+    listID = []
+    while tempN not in listID:
+        listID.append(tempN)
+        x = ''.join(sorted(str(tempN), reverse=True))
+        y = ''.join(sorted(str(tempN)))
+        z = int(x, b) - int(y, b)
         zStr = ''
         while z > 0:
             zStr += str(z % b)
             z //= b
-        if len(str(z)) < k:
-            zStr = zStr + '0' * (k - len(str(z)))
-        z = int(zStr[::-1])
-    return chainLength
+        zStr = zStr[::-1]
+        zStr = zStr.zfill(k)
+        tempN = int(zStr)
+    return len(listID) - listID.index(tempN)
 
 
 print(solution(210022, 3))
 print(solution(1211, 10))
+print(solution(210022, 10))
+print(solution(100, 2))
+print(solution(210022, 4))
+print(solution(210022, 5))
+print(solution(210022, 6))
+print(solution(210022, 7))
