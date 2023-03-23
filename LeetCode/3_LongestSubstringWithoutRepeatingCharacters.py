@@ -2,14 +2,14 @@ def lengthOfLongestSubstring(s):
     maxLength = 0
     startIndex = 0
     endIndex = 0
-    temp = ""
+    temp = ''
     while endIndex < len(s):
+        while startIndex < endIndex and s[endIndex] in temp:
+            temp = temp.replace(s[startIndex], '')
+            startIndex += 1
+        temp += s[endIndex]
+        maxLength = max(maxLength, len(temp))
         endIndex += 1
-        if s[startIndex] not in temp:
-            while startIndex < endIndex and s[startIndex] not in temp:
-                temp += s[startIndex]
-                startIndex += 1
-                maxLength = max(maxLength, len(temp))
     return maxLength
 # def lengthOfLongestSubstring(s):
 #     max = 0
