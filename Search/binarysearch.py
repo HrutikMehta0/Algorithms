@@ -1,4 +1,4 @@
-def search(nums, target) -> int:
+def search(nums, target):
     lo = 0
     hi = len(nums) - 1
     while hi - lo > 1:
