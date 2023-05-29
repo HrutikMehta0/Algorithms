@@ -1,6 +1,4 @@
 import re
-
-
 def findDuplicate(paths):
 
 
