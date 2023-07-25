@@ -16,15 +16,13 @@ def maxArea(heights):
     pointer_one = 0
     pointer_two = len(heights) - 1
     maximumArea = -99999999
-    while pointer_two != 0 or pointer_one != len(heights)-1:
-        if heights[pointer_one] > heights[pointer_two]:
-            currArea = (pointer_two - pointer_one) * heights[pointer_two]
+    while pointer_one < pointer_two:
+        if heights[pointer_one] < heights[pointer_two]:
+            maximumArea = max((pointer_two - pointer_one) * heights[pointer_one], maximumArea)
+            pointer_one += 1
         else:
-            currArea = (pointer_two - pointer_one) * heights[pointer_one]
-        if maximumArea < currArea:
-            maximumArea = currArea
-        pointer_one += 1
-        pointer_two -= 1
+            maximumArea = max((pointer_two - pointer_one) * heights[pointer_two], maximumArea)
+            pointer_two -= 1
 
     return maximumArea
 
